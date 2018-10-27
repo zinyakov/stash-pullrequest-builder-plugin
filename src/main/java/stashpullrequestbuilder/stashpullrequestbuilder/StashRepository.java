@@ -2,7 +2,11 @@ package stashpullrequestbuilder.stashpullrequestbuilder;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.model.Result;
-import stashpullrequestbuilder.stashpullrequestbuilder.stash.*;
+import stashpullrequestbuilder.stashpullrequestbuilder.stash.StashApiClient;
+import stashpullrequestbuilder.stashpullrequestbuilder.stash.StashPullRequestComment;
+import stashpullrequestbuilder.stashpullrequestbuilder.stash.StashPullRequestMergableResponse;
+import stashpullrequestbuilder.stashpullrequestbuilder.stash.StashPullRequestResponseValue;
+import stashpullrequestbuilder.stashpullrequestbuilder.stash.StashPullRequestResponseValueRepository;
 
 import java.io.IOException;
 import java.util.AbstractMap;
