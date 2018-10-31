@@ -206,13 +206,15 @@ public class StashRepository {
     }
 
     private Boolean isPullRequestMergable(StashPullRequestResponseValue pullRequest) {
-        if (trigger.isCheckMergeable() || trigger.isCheckNotConflicted()) {
+        if (trigger.isCheckMergeable() || trigger.isCheckNotConflicted() || trigger.isCheckNotNeedsWork()) {
             StashPullRequestMergableResponse mergable = client.getPullRequestMergeStatus(pullRequest.getId());
             boolean res = true;
             if (trigger.isCheckMergeable())
                 res = res && mergable.getCanMerge();
             if (trigger.isCheckNotConflicted())
                 res = res && !mergable.getConflicted();
+            if (trigger.isCheckNotNeedsWork() && !mergable.getVetoes().isEmpty())
+                res = res && !mergable.isNeedsWork();
             return res;
         }
         return true;

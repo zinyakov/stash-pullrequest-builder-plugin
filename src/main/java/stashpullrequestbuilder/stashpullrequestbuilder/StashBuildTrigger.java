@@ -66,6 +66,7 @@ public class StashBuildTrigger extends Trigger<Job<?, ?>> {
     private final boolean checkMergeable;
     private final boolean mergeOnSuccess;
     private final boolean checkNotConflicted;
+    private final boolean checkNotNeedsWork;
     private final boolean onlyBuildOnComment;
     private final boolean deletePreviousBuildFinishComments;
     private final boolean cancelOutdatedJobsEnabled;
@@ -89,6 +90,7 @@ public class StashBuildTrigger extends Trigger<Job<?, ?>> {
             boolean checkMergeable,
             boolean mergeOnSuccess,
             boolean checkNotConflicted,
+            boolean checkNotNeedsWork,
             boolean onlyBuildOnComment,
             String ciBuildPhrases,
             boolean deletePreviousBuildFinishComments,
@@ -110,6 +112,7 @@ public class StashBuildTrigger extends Trigger<Job<?, ?>> {
         this.checkMergeable = checkMergeable;
         this.mergeOnSuccess = mergeOnSuccess;
         this.checkNotConflicted = checkNotConflicted;
+        this.checkNotNeedsWork = checkNotNeedsWork;
         this.onlyBuildOnComment = onlyBuildOnComment;
         this.deletePreviousBuildFinishComments = deletePreviousBuildFinishComments;
         this.targetBranchesToBuild = targetBranchesToBuild;
@@ -329,6 +332,10 @@ public class StashBuildTrigger extends Trigger<Job<?, ?>> {
 
     public boolean isCheckNotConflicted() {
         return checkNotConflicted;
+    }
+
+    public boolean isCheckNotNeedsWork() {
+        return checkNotNeedsWork;
     }
 
     public boolean isOnlyBuildOnComment() {

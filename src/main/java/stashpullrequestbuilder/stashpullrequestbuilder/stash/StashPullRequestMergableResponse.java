@@ -12,6 +12,8 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StashPullRequestMergableResponse {
 
+    private static final String NEEDS_WORK_SUMMARY_MESSAGE = "Needs work";
+
     private Boolean canMerge;
     private Boolean conflicted;
     private ArrayList<StashPullRequestMergableVetoMessage> vetoes ;
@@ -38,5 +40,14 @@ public class StashPullRequestMergableResponse {
 
     public void setVetoes(ArrayList<StashPullRequestMergableVetoMessage> vetoes) {
         this.vetoes = vetoes;
+    }
+
+    public Boolean isNeedsWork() {
+        for (StashPullRequestMergableVetoMessage veto : getVetoes()) {
+            if (veto.getSummaryMessage().equals(NEEDS_WORK_SUMMARY_MESSAGE)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
